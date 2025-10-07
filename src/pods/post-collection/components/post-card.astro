@@ -4,9 +4,8 @@ import type { Post } from '../api';
 
 interface Props {
   post: Post;
-  readTimeLabel: string;
 }
-const { post, readTimeLabel } = Astro.props;
+const { post } = Astro.props;
 ---
 
 <a
@@ -22,7 +21,7 @@ const { post, readTimeLabel } = Astro.props;
         aria-hidden="true"
       />
     </div>
-    <div class="flex flex-1 flex-col justify-between gap-6 p-4 @lg:flex-2">
+    <div class="flex flex-1 flex-col justify-between gap-7 p-5 pt-6 @lg:flex-2">
       <div>
         <time datetime={post.date} class="mb-1 block text-xs">
           {
@@ -40,14 +39,7 @@ const { post, readTimeLabel } = Astro.props;
         </h3>
         <p class="text-sm">{post.summary}</p>
       </div>
-
-      <div class="flex items-center gap-4">
-        <span class="text-xs">{post.readTime} {readTimeLabel}</span>
-        <div class="flex items-center gap-1">
-          <HeartIcon class="h-5 w-5" />
-          <span class="text-xs">{6}</span>
-        </div>
-      </div>
+      <span class="text-xs">{post.readTime} min read</span>
     </div>
   </article>
 </a>

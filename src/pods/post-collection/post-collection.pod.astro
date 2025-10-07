@@ -7,23 +7,8 @@ interface Props {
   posts: Post[];
 }
 const { posts } = Astro.props;
-
-const postCollectionContent: PostCollectionContent = {
-  buttonLoadMoreText: 'Load more articles',
-  articleCard: {
-    readTimeLabel: 'min read',
-  },
-};
 ---
 
-<section class="flex flex-1 flex-col gap-9">
-  <div class="grid max-w-[895px] gap-8 xl:grid-cols-2">
-    {posts.map(post => <PostCard post={post} readTimeLabel={postCollectionContent.articleCard.readTimeLabel} />)}
-  </div>
-
-  <button
-    class="bg-primary-800 hover:bg-primary-900 dark:bg-primary-700 dark:hover:bg-primary-600 m-auto mb-4 w-fit cursor-pointer rounded-xl px-8 py-2 text-center text-lg font-semibold text-white transition-colors duration-200 dark:text-black"
-  >
-    {postCollectionContent.buttonLoadMoreText}
-  </button>
+<section class="grid max-w-[900px] flex-1 gap-8 xl:grid-cols-2">
+  {posts.map(post => <PostCard post={post} />)}
 </section>
