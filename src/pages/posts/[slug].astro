@@ -1,0 +1,67 @@
+---
+import Layout from '#layouts/layout.astro';
+import Hero from '#components/hero.astro';
+import PostPod from '#pods/post/post.pod.astro';
+import MiniBioPod from '#pods/mini-bio/mini-bio.pod.astro';
+import ShapeRectangle from '#assets/shapes/rectangle.svg';
+import NewsletterPod from '#pods/newsletter/newsletter.pod.astro';
+import { getAllPosts, type Post } from '#pods/post-collection/api';
+
+export async function getStaticPaths() {
+  const postEntries = await getAllPosts();
+  return postEntries.map(entry => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+
+// Get other posts for sidebar
+const allPosts = await getAllPosts();
+const otherPosts = allPosts.slice(0, 5);
+
+const postCollectionMiniContent = {
+  heading: 'Popular posts',
+};
+---
+
+<Layout title={entry.title}>
+  <Hero url={entry.image.url} slot="hero" />
+
+  <PostPod postEntry={entry} />
+
+  <Fragment slot="aside">
+    <MiniBioPod type="card" />
+    <NewsletterPod type="mini" />
+
+    <!-- Popular Posts Section -->
+    <section
+      class="bg-primary-50 dark:bg-primary-100 relative overflow-clip rounded-2xl p-6"
+      aria-labelledby="popular-posts-aside-heading"
+    >
+      <div class="relative z-10 flex flex-col gap-6">
+        <h2 class="font-geist font-bold" id="popular-posts-aside-heading">{postCollectionMiniContent.heading}</h2>
+
+        <ul class="flex flex-col gap-4" aria-label="List of popular posts">
+          {
+            otherPosts.map((post: Post) => (
+              <li>
+                <a
+                  href={`/posts/${post.slug}`}
+                  class="hover:text-primary-600 leading-[1.3] decoration-[1.4px] underline-offset-2 transition-all hover:underline"
+                >
+                  {post.title}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <!-- Decorative shapes -->
+      <div class="text-primary-500/25 absolute right-[-75%] bottom-[-25%] h-[243px] w-[420px]">
+        <ShapeRectangle />
+      </div>
+    </section>
+  </Fragment>
+</Layout>

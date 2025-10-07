@@ -1,215 +1,117 @@
----
-title: 'Cómo crear un formulario de contacto con Astro Server Actions y Resend'
-description: 'Aprende a crear un formulario de contacto funcional en Astro usando Server Actions y Resend, sin necesidad de un backend separado.'
-date: 2025-10-07
-tags: ['Astro', 'Resend', 'Server Actions', 'Formularios', 'Email']
-author: 'Tu Nombre'
----
+# John's Web Dev Blog
 
-# 📨 Crear un formulario de contacto con Astro Server Actions y Resend
+A modern blog website built with Astro, TypeScript, and Tailwind CSS, featuring responsive design and custom typography scaling.
 
-Los formularios de contacto son una parte esencial de cualquier sitio web.  
-Durante años, la única forma de implementarlos era montar un **backend propio** (con Express, Fastify, Laravel, etc.) o depender de **servicios externos** (como Formspree, Netlify Forms o Zapier).
+## 🚀 Project Structure
 
-Esto funcionaba, pero traía varios inconvenientes:
-
-- Tenías que configurar y desplegar un servidor adicional.
-- Gestionar **CORS**, **seguridad**, **rutas** y **autenticación**.
-- O pagar por servicios externos con limitaciones en número de envíos.
-- Y además, mantener el frontend y el backend por separado.
-
-Con la llegada de **Astro Server Actions**, todo eso cambió.
-
-Ahora podemos procesar formularios **directamente dentro de nuestro proyecto Astro**, sin API externa ni backend dedicado.  
-Y si combinamos esto con **[Resend](https://resend.com)** —una API moderna y simple para enviar correos—, obtenemos una solución limpia, rápida y segura.
-
-En este artículo aprenderás a crear un **formulario de contacto funcional** usando:
-
-- [Astro](https://astro.build) 🪐
-- **Server Actions** (nativas desde Astro 3.0)
-- [Resend](https://resend.com) para enviar correos electrónicos
-
-Al final tendrás un formulario completamente operativo, sin frameworks adicionales ni configuraciones complicadas.
-
----
-
-## ⚙️ 1. Configuración inicial
-
-Primero, crea un nuevo proyecto de Astro:
-
-```bash
-npm create astro@latest my-contact-form
-cd my-contact-form
-npm install
+```
+/
+├── public/
+│   └── favicon.svg
+├── src/
+│   ├── components/
+│   │   ├── Header.astro
+│   │   └── Footer.astro
+│   ├── layouts/
+│   │   └── Layout.astro
+│   ├── pages/
+│   │   ├── index.astro (Home page)
+│   │   ├── about.astro (About page)
+│   │   └── post.astro (Single post page)
+│   └── styles/
+│       └── global.css
+├── astro.config.mjs
+├── postcss.config.js
+├── package.json
+└── tsconfig.json
 ```
 
-Asegúrate de tener Node 18+ y Astro 3.0 o superior.
+## 🛠️ Tech Stack
 
-## ⚙️ 2. Configura Server Actions
+- **Astro** - Static site generator
+- **TypeScript** - Type safety
+- **Tailwind CSS** - Utility-first CSS framework
+- **PostCSS** - CSS processing
+- **Vite** - Build tool
 
-Para usar Server Actions, necesitamos un adaptador que soporte código del lado del servidor.
-Instala el adaptador de Node.js (puedes elegir otro según tu plataforma de despliegue):
+## 🎨 Design Features
 
-```bash
-npm install @astrojs/node
-```
+### Typography Scale
 
-Luego, actualiza tu `astro.config.mjs` para incluir el adaptador:
+The project uses a responsive typography scale generated with Utopia:
 
-```diff
-// @ts-check
-import { defineConfig} from 'astro/config';
-+ import node from '@astrojs/node';
+- Scales from 360px to 1440px viewport
+- Base sizes: 17px to 19px
+- Scale ratios: 1.125 to 1.2
+- Custom CSS variables for all text sizes
 
-// https://astro.build/config
-export default defineConfig({
-+  adapter: node({
-+    mode: 'standalone',
-+  }),
-  // otras configuraciones...
-});
-```
+### Design System
 
-## ✉️ 3. Instala Resend
+- **Colors**: Custom green palette (#EAF4F0, #318C66, #236348)
+- **Fonts**: Instrument Sans (headings) and Geist (body text)
+- **Components**: Header, Footer, Article cards, Sidebar widgets
+- **Layouts**: Responsive grid with sidebar
 
-Resend es una API moderna para enviar correos electrónicos fácilmente.
-Crea una cuenta gratuita y obtén tu API key desde el dashboard.
+### Pages
 
-Instala el SDK oficial:
+1. **Home** - Blog listing with hero section, article grid, and sidebar
+2. **About** - Personal profile with experience and skills sections
+3. **Post** - Single article layout with content and sidebar
 
-```bash
-npm install resend
-```
+## 🚀 Getting Started
 
-Luego, añade tus variables de entorno en un archivo `.env`:
+1. Install dependencies:
 
-```bash
-RESEND_API_KEY=tu_api_key_aqui
-FROM_EMAIL=tu_email_verificado_aqui
-TO_EMAIL=email_destino_aqui
-```
+   ```bash
+   npm install
+   ```
 
-Y también agrégalas a tu `astro.config.mjs`:
+2. Start the development server:
 
-```diff
-export default defineConfig({
-  // otras configuraciones...
-  env: {
-    schema: {
-      RESEND_API_KEY: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      FROM_EMAIL: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-      TO_EMAIL: envField.string({
-        context: 'server',
-        access: 'secret',
-      }),
-    },
-    },
-});
-```
+   ```bash
+   npm run dev
+   ```
 
-## 📝 4. Crea el formulario en Astro
+3. Open [http://localhost:4321](http://localhost:4321) in your browser
 
-Crea un nuevo archivo `src/pages/contact.astro` y añade el siguiente código:
+## 📦 Available Scripts
 
-```astro
-<html lang="es">
-  <head>
-    <title>Contacto</title>
-  </head>
-  <body class="max-w-lg mx-auto p-6 font-sans">
-    <h1 class="text-2xl mb-4 font-bold">Contáctanos</h1>
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build
+- `npm run astro` - Run Astro CLI commands
 
-    {result?.success && (
-      <p class="text-green-600 mb-4">¡Mensaje enviado correctamente!</p>
-    )}
-    {result && !result.success && (
-      <p class="text-red-600 mb-4">Error al enviar el mensaje. Intenta más tarde.</p>
-    )}
+## 🎯 Design Reference
 
-    <form method="post" class="grid gap-4">
-      <input name="name" type="text" placeholder="Tu nombre" required class="border p-2 rounded" />
-      <input name="email" type="email" placeholder="Tu correo" required class="border p-2 rounded" />
-      <textarea name="message" placeholder="Tu mensaje" required class="border p-2 rounded h-32"></textarea>
-      <button type="submit" class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-        Enviar
-      </button>
-    </form>
-  </body>
-</html>
-```
+This project was built based on Figma designs:
 
-## 🛠️ 5. Crea la acción del servidor
+- **Home page**: Blog listing with article cards and sidebar
+- **Post page**: Single article layout with hero image
+- **About page**: Personal profile with experience timeline
 
-Creamos la carpteta `src/actions` y dentro un archivo `index.ts` para definir nuestra acción que enviará el correo:
+## 📱 Responsive Design
 
-_src/actions/index.ts_
+The website is fully responsive and adapts to different screen sizes:
 
-```ts
-import { Resend } from 'resend';
+- Mobile-first approach
+- Flexible grid layouts
+- Scalable typography
+- Touch-friendly interactions
 
-const resend = new Resend(import.meta.env.RESEND_API_KEY);
+## 🔧 Configuration
 
-export const sendEmail = async (formData: FormData) => {
-  const name = formData.get('name') as string;
-  const email = formData.get('email') as string;
-  const message = formData.get('message') as string;
+### Tailwind CSS
 
-  try {
-    await resend.emails.send({
-      from: `Tu Sitio <${import.meta.env.FROM_EMAIL}>`,
-      to: `${import.meta.env.TO_EMAIL}`,
-      subject: `Nuevo mensaje de ${name}`,
-      reply_to: email,
-      text: message
-    });
+Configured with custom colors and typography. See `astro.config.mjs` for Vite plugin setup.
 
-    return { success: true };
-  } catch (error) {
-    console.error(error);
-    return { success: false };
-  }
-};
-```
+### PostCSS
 
-## 6. Conecta el formulario con la acción
+Basic configuration with Tailwind CSS and Autoprefixer. See `postcss.config.js`.
 
-Ahora, volvamos a `src/pages/contact.astro` y conectemos el formulario con la acción que acabamos de crear:
+### Typography
 
-```diff---
-// otras importaciones...
-import { sendEmail } from '../actions/index';
+Custom CSS variables defined in `src/styles/global.css` for fluid typography scaling.
 
-    const handleSubmit = async (event: SubmitEvent) => {
-      event.preventDefault();
-      const formData = new FormData(event.target as HTMLFormElement);
-      const result = await sendEmail(formData);
-    };
+## 📄 License
 
-    <form method="post" class="grid gap-4">
-
-        <input name="name" type="text" placeholder="Tu nombre" required class="border p-2 rounded" />
-        <input name="email" type="email" placeholder="Tu correo" required class="border p-2 rounded" />
-        <textarea name="message" placeholder="Tu mensaje" required class="border p-2 rounded h-32"></textarea>
-        <button type="submit" class="bg-blue-600 text-white py-2 rounded hover:bg-blue-700">
-            Enviar
-        </button>
-    </form>
-
-    <Script>
-      const form = document.querySelector('form');
-      form.addEventListener('submit', handleSubmit);
-    </Script>
-```
-
-## 🚀 Conclusión
-
-Con Astro Server Actions y Resend, puedes construir un formulario de contacto profesional, seguro y mantenible sin complicaciones.
-Es rápido, moderno y totalmente integrado en tu proyecto Astro.
-
-Puedes encontrar el código implementado de este ejemplo en github: [enlace al repositorio](https://github.com/tu_usuario/tu_repositorio)
+This project is for educational and demonstration purposes.
