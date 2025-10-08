@@ -44,8 +44,8 @@
 
   --color-text: #000000;
 
-  --font-instrument: 'Instrument Sans', sans-serif;
-  --font-geist: 'Geist', sans-serif;
+  --font-title: 'Instrument Sans', sans-serif;
+  --font-body: 'Geist', sans-serif;
 }
 
 :root.dark {
@@ -102,8 +102,8 @@
   --color-secondary-900: var(--color-secondary-900);
   --color-secondary-950: var(--color-secondary-950);
 
-  --font-instrument: 'Instrument Sans', sans-serif;
-  --font-geist: 'Geist', sans-serif;
+  --font-title: var(--font-title);
+  --font-body: var(--font-body);
 
   --text-xs: var(--step--2);
   --text-sm: var(--step--1);
@@ -188,18 +188,16 @@
 
 html {
   color-scheme: light;
-  letter-spacing: 0.2px;
 }
 
 html.dark {
   color-scheme: dark;
   font-weight: 300;
-  letter-spacing: 0.4px;
 }
 
 /* Base styles */
 body {
-  font-family: var(--font-geist);
+  font-family: var(--font-body);
   transition-property: background-color, color;
   transition-duration: 0.3s;
   transition-timing-function: ease-in-out;
@@ -213,5 +211,5 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: var(--font-instrument);
+  font-family: var(--font-title);
 }
