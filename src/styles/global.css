@@ -15,10 +15,10 @@
   --step-5: clamp(1.9147rem, 1.5679rem + 1.5411vw, 2.9549rem);
   --step-6: clamp(2.154rem, 1.69rem + 2.062vw, 3.5459rem);
 
-  --color-primary: #00338a;
+  --color-primary: #620073; /* h cambia, s a 100 de base y lightness a 23 de base, usar colores no muy oscuros */
   --color-secondary: #0081a6;
 
-  --color-primary-50: hsl(from var(--color-primary) h calc(s - 50) calc(l + 70));
+  --color-primary-50: hsl(from var(--color-primary) h calc(s - 50) calc(l + 74));
   --color-primary-100: hsl(from var(--color-primary) h calc(s - 50) calc(l + 50));
   --color-primary-200: hsl(from var(--color-primary) h calc(s - 20) calc(l + 35));
   --color-primary-300: hsl(from var(--color-primary) h calc(s - 10) calc(l + 20));
@@ -56,7 +56,7 @@
   --color-primary-400: hsl(from var(--color-primary) h s calc(l - 5));
   --color-primary-500: var(--color-primary);
   --color-primary-600: hsl(from var(--color-primary) h calc(s - 20) calc(l + 10));
-  --color-primary-700: hsl(from var(--color-primary) h calc(s - 20) calc(l + 22));
+  --color-primary-700: hsl(from var(--color-primary) h calc(s - 20) calc(l + 20));
   --color-primary-800: hsl(from var(--color-primary) h calc(s - 20) calc(l + 35));
   --color-primary-900: hsl(from var(--color-primary) h calc(s - 50) calc(l + 50));
   --color-primary-950: hsl(from var(--color-primary) h calc(s - 50) calc(l + 70));
