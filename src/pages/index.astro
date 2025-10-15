@@ -1,11 +1,11 @@
 ---
 import Layout from '#layouts/layout.astro';
 import Hero from '#components/hero.astro';
-import MiniBioPod from '#pods/mini-bio/mini-bio.pod.astro';
-import ShapeRectangle from '#assets/shapes/rectangle.svg';
 import PostCollection from '#pods/post-collection/post-collection.pod.astro';
-import NewsletterPod from '#pods/newsletter/newsletter.pod.astro';
+import MiniBioPod from '#pods/mini-bio/mini-bio.pod.astro';
+import PopularPostsPod from '#pods/popular-post/popular-post.pod.astro';
 import { getAllPosts } from '#pods/post-collection/api';
+import MonthlyRecommendationPod from '#pods/monthly-recomendation/monthly-recomendation.pod.astro';
 
 const allPosts = await getAllPosts();
 const sortedPosts = allPosts.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
@@ -16,9 +16,6 @@ const homeContent = {
   hero: {
     title: "John's Web Dev Blog",
     description: 'Here you can find various articles on web application development.',
-  },
-  postCollectionMini: {
-    heading: 'Popular posts',
   },
 };
 ---
@@ -37,35 +34,7 @@ const homeContent = {
 
   <Fragment slot="aside">
     <MiniBioPod type="card" />
-    <NewsletterPod type="mini" />
-
-    <!-- Popular Posts Section -->
-    <section
-      class="bg-primary-50 dark:bg-primary-100 relative overflow-clip rounded-2xl p-6"
-      aria-labelledby="popular-posts-aside-heading"
-    >
-      <div class="relative z-10 flex flex-col gap-6">
-        <h2 class="font-geist font-bold" id="popular-posts-aside-heading">{homeContent.postCollectionMini.heading}</h2>
-
-        <ul class="flex flex-col gap-4" aria-label="List of popular posts">
-          {
-            otherPosts.map((post: any) => (
-              <li>
-                <a
-                  href={`/posts/${post.slug}`}
-                  class="hover:text-primary-600 dark:hover:text-primary-700 leading-[1.3] decoration-[1.4px] underline-offset-2 transition-all hover:underline"
-                >
-                  {post.title}
-                </a>
-              </li>
-            ))
-          }
-        </ul>
-      </div>
-      <!-- Decorative shapes -->
-      <div class="text-primary-500/25 absolute right-[-75%] bottom-[-25%] h-[243px] w-[420px]">
-        <ShapeRectangle />
-      </div>
-    </section>
+    <MonthlyRecommendationPod />
+    <PopularPostsPod otherPosts={otherPosts} />
   </Fragment>
 </Layout>

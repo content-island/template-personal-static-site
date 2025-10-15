@@ -1,0 +1,27 @@
+---
+const content = {
+  title: 'Monthly Recommendation',
+  description: '🎧 Podcast of the Month: "Syntax — Tasty Web Development Treats"',
+  linkText: 'Available on ',
+  linkLabel: 'syntax.fm',
+  linkUrl: 'https://syntax.fm',
+};
+---
+
+<section
+  class="bg-secondary-50 dark:bg-secondary-100 relative hidden rounded-2xl p-6 lg:flex lg:flex-col lg:gap-3"
+  aria-labelledby="newsletter-aside-heading"
+>
+  <h2 class="font-geist text-tbase-500/80 font-bold" id="newsletter-aside-heading">{content.title}</h2>
+  <p class="text-sm">{content.description}</p>
+  <p class="text-sm">
+    {content.linkText}
+    <a
+      href={content.linkUrl}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="text-tbase-500/80 hover:text-secondary-500 underline decoration-[1.4px] underline-offset-2 transition-all"
+      >{content.linkLabel}</a
+    >
+  </p>
+</section>
