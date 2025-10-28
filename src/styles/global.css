@@ -18,29 +18,29 @@
   --color-primary: #7c2687; /* h cambia, s a 56 de base y lightness a 34 de base, usar colores no muy oscuros, repasar todas las conversiones, paletas con material */
   --color-secondary: #873626;
 
-  --color-primary-50: hsl(from var(--color-primary) h calc(s - 20) calc(l + 59));
-  --color-primary-100: hsl(from var(--color-primary) h calc(s - 50) calc(l + 50));
-  --color-primary-200: hsl(from var(--color-primary) h calc(s - 20) calc(l + 35));
-  --color-primary-300: hsl(from var(--color-primary) h calc(s - 10) calc(l + 20));
-  --color-primary-400: hsl(from var(--color-primary) h s calc(l + 10));
+  --color-primary-50: hsl(from var(--color-primary) h calc(s + 17) calc(l + 62));
+  --color-primary-100: hsl(from var(--color-primary) h calc(s + 18) calc(l + 55));
+  --color-primary-200: hsl(from var(--color-primary) h calc(s + 20) calc(l + 43));
+  --color-primary-300: hsl(from var(--color-primary) h calc(s + 21) calc(l + 30));
+  --color-primary-400: hsl(from var(--color-primary) h calc(s - 3) calc(l + 13));
   --color-primary-500: var(--color-primary);
-  --color-primary-600: hsl(from var(--color-primary) h s calc(l - 5));
-  --color-primary-700: hsl(from var(--color-primary) h calc(s - 10) calc(l - 10));
-  --color-primary-800: hsl(from var(--color-primary) h calc(s - 20) calc(l - 17));
-  --color-primary-900: hsl(from var(--color-primary) h calc(s - 30) calc(l - 22));
-  --color-primary-950: hsl(from var(--color-primary) h calc(s - 40) calc(l - 24));
+  --color-primary-600: hsl(from var(--color-primary) h calc(s + 2) calc(l - 7));
+  --color-primary-700: hsl(from var(--color-primary) h calc(s + 4) calc(l - 13));
+  --color-primary-800: hsl(from var(--color-primary) h calc(s + 10) calc(l - 19));
+  --color-primary-900: hsl(from var(--color-primary) h calc(s + 16) calc(l - 24));
+  --color-primary-950: hsl(from var(--color-primary) h calc(s + 24) calc(l - 28));
 
-  --color-secondary-50: hsl(from var(--color-secondary) h calc(s) calc(l + 56));
-  --color-secondary-100: hsl(from var(--color-secondary) h calc(s - 50) calc(l + 50));
-  --color-secondary-200: hsl(from var(--color-secondary) h calc(s - 20) calc(l + 35));
-  --color-secondary-300: hsl(from var(--color-secondary) h calc(s - 10) calc(l + 20));
-  --color-secondary-400: hsl(from var(--color-secondary) h s calc(l + 10));
+  --color-secondary-50: hsl(from var(--color-secondary) h calc(s + 17) calc(l + 62));
+  --color-secondary-100: hsl(from var(--color-secondary)h calc(s + 18) calc(l + 55));
+  --color-secondary-200: hsl(from var(--color-secondary) h calc(s + 20) calc(l + 43));
+  --color-secondary-300: hsl(from var(--color-secondary) h calc(s + 21) calc(l + 30));
+  --color-secondary-400: hsl(from var(--color-secondary) h calc(s - 3) calc(l + 13));
   --color-secondary-500: var(--color-secondary);
-  --color-secondary-600: hsl(from var(--color-secondary) h s calc(l - 5));
-  --color-secondary-700: hsl(from var(--color-secondary) h calc(s - 10) calc(l - 10));
-  --color-secondary-800: hsl(from var(--color-secondary) h calc(s - 20) calc(l - 17));
-  --color-secondary-900: hsl(from var(--color-secondary) h s calc(l - 30));
-  --color-secondary-950: hsl(from var(--color-secondary) h s calc(l - 30));
+  --color-secondary-600: hsl(from var(--color-secondary)  h calc(s + 2) calc(l - 7));
+  --color-secondary-700: hsl(from var(--color-secondary)  h calc(s + 4) calc(l - 13));
+  --color-secondary-800: hsl(from var(--color-secondary)h calc(s + 10) calc(l - 19));
+  --color-secondary-900: hsl(from var(--color-secondary) h calc(s + 16) calc(l - 24));
+  --color-secondary-950: hsl(from var(--color-secondary) h calc(s + 24) calc(l - 28));
 
   --color-text: #000000;
 
