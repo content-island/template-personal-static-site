@@ -1,6 +1,6 @@
 export interface Experience {
   id: string;
-  language: 'en';
+  language: string;
   company: string;
   role: string;
   period: string;
@@ -9,7 +9,7 @@ export interface Experience {
 
 export interface ExperienceSection {
   id: string;
-  language: 'en';
+  language: string;
   title: string;
   experienceCollection: Experience[];
 }

@@ -3,5 +3,5 @@ import type { MiniBio } from './mini-bio.api-model';
 
 export const getMiniBio = async () =>
   await client.getContent<MiniBio>({
-    id: '68cc1a59382896049d9ffb5a',
+    id: '6900b4833b04f4ec2b218b0a',
   });
