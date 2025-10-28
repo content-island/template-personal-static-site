@@ -18,7 +18,7 @@ const toolCollectionContent: ToolSectionContent = {
 ---
 
 <section
-  class="bg-secondary-50 dark:bg-secondary-100 flex flex-col items-center gap-4 rounded-2xl p-6 text-center md:items-start md:text-start"
+  class="bg-secondary-50 dark:bg-secondary-700 flex flex-col items-center gap-4 rounded-2xl p-6 text-center md:items-start md:text-start"
   aria-labelledby="tech-aside-heading"
 >
   <h2 class="font-geist font-bold" id="tech-aside-heading">{toolCollectionContent.heading}</h2>
@@ -27,7 +27,7 @@ const toolCollectionContent: ToolSectionContent = {
   <ul class="flex flex-wrap justify-center gap-4" aria-labelledby="tech-aside-heading">
     {
       toolCollectionContent.tools.map(tool => (
-        <li class="flex h-14 w-14 items-center justify-center rounded-lg bg-white dark:bg-neutral-100">
+        <li class="flex h-14 w-14 items-center justify-center rounded-lg bg-white dark:bg-neutral-200">
           <img src={tool.logo} alt={tool.name} title={tool.name} class="h-8 w-8 object-contain" />
         </li>
       ))

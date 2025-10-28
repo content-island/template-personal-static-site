@@ -16,8 +16,10 @@ const { content } = Astro.props;
     </div>
     <div class="flex max-w-[55ch] flex-1 flex-col justify-center gap-4">
       <div>
-        <h1 class="text-primary-700 text-5xl font-bold" id="about-hero-heading">{content.name}</h1>
-        <p class="text-primary-500 font-semibold">{content.role}</p>
+        <h1 class="text-primary-700 dark:text-primary-200 text-5xl font-bold" id="about-hero-heading">
+          {content.name}
+        </h1>
+        <p class="text-primary-500 dark:text-primary-300 font-semibold">{content.role}</p>
       </div>
       <p>
         {content.description}
