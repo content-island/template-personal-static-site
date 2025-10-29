@@ -5,7 +5,7 @@ import PostCollection from '#pods/post-collection/post-collection.pod.astro';
 import MiniBioPod from '#pods/mini-bio/mini-bio.pod.astro';
 import PopularPostsPod from '#pods/popular-post/popular-post.pod.astro';
 import { getAllPosts } from '#pods/post-collection/api';
-import MonthlyRecommendationPod from '#pods/monthly-recomendation/monthly-recomendation.pod.astro';
+import MonthlyRecommendationPod from '#pods/monthly-recommendation/monthly-recommendation.pod.astro';
 
 const allPosts = await getAllPosts();
 const sortedPosts = allPosts.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
