@@ -1,2 +1,2 @@
-export * from './tool-collection.api-model';
-export * from './tool-collection.api';
+export * from './cta.api';
+export * from './cta.api-model';
