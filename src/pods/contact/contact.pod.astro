@@ -1,0 +1,15 @@
+---
+import ContactButtons from '#components/contact-buttons.astro';
+import { getContactSection } from './api';
+
+const contactContent = await getContactSection();
+---
+
+<section
+  aria-labelledby="contact-aside-heading"
+  class="bg-primary-50 dark:bg-primary-900 flex flex-col items-center justify-center gap-4 rounded-2xl p-6 text-center md:w-1/2 md:text-start lg:w-full"
+>
+  <h2 class="font-geist w-full font-bold" id="contact-aside-heading">{contactContent.title}</h2>
+  <p class="text-sm">{contactContent.description}</p>
+  <ContactButtons />
+</section>

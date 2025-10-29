@@ -13,7 +13,7 @@ const sortedPosts = allPosts.sort((a: any, b: any) => new Date(b.date).getTime()
 const otherPosts = allPosts.slice(0, 5);
 ---
 
-<Layout title="John's Web Dev Blog">
+<Layout title="John's Web Dev Blog" reverseAside={true}>
   <HomeHeroPod slot="hero" />
 
   <PostCollection posts={sortedPosts} />

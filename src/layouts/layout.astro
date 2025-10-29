@@ -6,9 +6,10 @@ import CTAPod from '#pods/cta/cta.pod.astro';
 import { getTheme } from './theme.api';
 export interface Props {
   title: string;
+  reverseAside?: boolean;
 }
 
-const { title } = Astro.props;
+const { title, reverseAside } = Astro.props;
 
 const theme = await getTheme();
 
@@ -55,7 +56,9 @@ const fontBodyLink = theme.fontBody.url
       <slot name="hero" />
       <div class="grid grid-cols-[minmax(0,_1fr)] gap-16 lg:grid-cols-[minmax(0,_1fr)_auto] lg:gap-8">
         <slot />
-        <aside class="flex flex-col-reverse gap-16 md:flex-row lg:max-w-[380px] lg:flex-col lg:gap-8 lg:pl-6">
+        <aside
+          class={`flex ${reverseAside ? 'flex-col-reverse' : 'flex-col'} gap-16 md:flex-row lg:max-w-[380px] lg:flex-col lg:gap-8 lg:pl-6`}
+        >
           <slot name="aside" />
         </aside>
       </div>
