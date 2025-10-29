@@ -1,36 +1,20 @@
 ---
 import Layout from '#layouts/layout.astro';
-import Hero from '#components/hero.astro';
 import PostCollection from '#pods/post-collection/post-collection.pod.astro';
 import MiniBioPod from '#pods/mini-bio/mini-bio.pod.astro';
 import PopularPostsPod from '#pods/popular-post/popular-post.pod.astro';
 import { getAllPosts } from '#pods/post-collection/api';
+import HomeHeroPod from '#pods/home-hero/home-hero.pod.astro';
 import MonthlyRecommendationPod from '#pods/monthly-recommendation/monthly-recommendation.pod.astro';
 
 const allPosts = await getAllPosts();
 const sortedPosts = allPosts.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const otherPosts = allPosts.slice(0, 5);
-
-const homeContent = {
-  hero: {
-    title: "John's Web Dev Blog",
-    description: 'Here you can find various articles on web application development.',
-  },
-};
 ---
 
 <Layout title="John's Web Dev Blog">
-  <Hero ariaLabelledby="hero-title" slot="hero">
-    <div class="flex flex-col gap-2 text-center">
-      <h1 class="text-primary-700 dark:text-primary-200 text-5xl font-bold" id="hero-title">
-        {homeContent.hero.title}
-      </h1>
-      <p class="m-auto max-w-[30ch] text-lg leading-[1.2] tracking-normal">
-        {homeContent.hero.description}
-      </p>
-    </div>
-  </Hero>
+  <HomeHeroPod slot="hero" />
 
   <PostCollection posts={sortedPosts} />
 
