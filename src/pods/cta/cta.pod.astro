@@ -1,12 +1,9 @@
 ---
 import ShapeOval from '#assets/shapes/oval.svg';
 import ShapeRectangle from '#assets/shapes/rectangle.svg';
+import { getCTASection } from './api';
 
-const content = {
-  title: 'What would you like to read about?',
-  description: 'I am preparing new articles and would love to hear your ideas.',
-  description2: 'Send me your suggestion to: jwd@gmail.com',
-};
+const content = await getCTASection();
 ---
 
 <section
@@ -19,7 +16,7 @@ const content = {
     </h2>
     <div>
       <p class="text-lg">{content.description}</p>
-      <p class="mt-1 text-lg">{content.description2}</p>
+      <p class="mt-1 text-lg">{content.descriptionTwo}</p>
     </div>
   </div>
   <!-- Decorative shapes -->
