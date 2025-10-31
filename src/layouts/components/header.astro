@@ -1,24 +1,35 @@
+---
+import { getHeader } from '../api';
+
+const content = await getHeader();
+---
+
 <header
   class="dark:bg-primary-950 text-tbase-500/90 sticky top-0 z-50 flex w-full items-center justify-between bg-white px-4 py-4 md:px-6"
 >
   <div class="font-instrument text-center text-xl font-bold text-nowrap">
-    <a href="/" class="hover:text-primary-500 dark:hover:text-primary-300 transition-colors">&lt;&gt;Jwd&lt;/&gt;</a>
+    <a
+      href="/"
+      class="hover:text-primary-500 dark:hover:text-primary-300 transition-colors"
+      aria-label={content.logoLabel}
+    >
+      <span aria-hidden="true">{content.logo}</span>
+    </a>
   </div>
 
   <nav class="flex items-center gap-8" aria-label="Main navigation">
     <a
       href="/about"
       class="font-geist hover:text-primary-500 dark:hover:text-primary-300 font-semibold transition-colors"
+      >{content.aboutLabel}</a
     >
-      About
-    </a>
 
     <!-- Botón toggle -->
     <button
       id="theme-toggle"
       class="bg-primary-50 dark:bg-primary-800 hover:bg-primary-100 dark:hover:bg-primary-600 relative flex h-10 w-10 cursor-pointer items-center justify-center rounded-full transition-colors duration-300 hover:shadow-lg"
     >
-      <span class="sr-only">Change theme</span>
+      <span class="sr-only">{content.buttonThemeLabel}</span>
       <div class="relative h-6 w-6 overflow-hidden">
         <!-- Moon icon -->
         <svg

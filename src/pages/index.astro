@@ -15,9 +15,7 @@ const otherPosts = allPosts.slice(0, 5);
 
 <Layout title="John's Web Dev Blog" reverseAside={true}>
   <HomeHeroPod slot="hero" />
-
   <PostCollection posts={sortedPosts} />
-
   <Fragment slot="aside">
     <MiniBioPod type="card" />
     <MonthlyRecommendationPod />
