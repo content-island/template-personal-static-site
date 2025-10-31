@@ -1,4 +1,4 @@
-import client from '../../lib/client';
+import client from '#/lib/client';
 import type { ThemeResponse, Header, Footer } from './layout.api-model';
 
 export const getTheme = async () =>

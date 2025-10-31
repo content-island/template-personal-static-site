@@ -4,9 +4,11 @@ import ExperienceCollectionPod from '#pods/experience-collection/experience-coll
 import MiniBioPod from '#pods/mini-bio/mini-bio.pod.astro';
 import ToolCollectionPod from '#pods/tool-collection/tool-collection.pod.astro';
 import ContactPod from '#pods/contact/contact.pod.astro';
+import { getMetadata } from '#core/api';
+const metadata = await getMetadata();
 ---
 
-<Layout title="About - John's Web Dev Blog">
+<Layout title={metadata.aboutTitle} description={metadata.aboutDescription} favicon={metadata.favicon.url}>
   <MiniBioPod type="hero" slot="hero" />
 
   <ExperienceCollectionPod />

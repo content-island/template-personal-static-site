@@ -6,14 +6,22 @@ import PopularPostsPod from '#pods/popular-post/popular-post.pod.astro';
 import { getAllPosts } from '#pods/post-collection/api';
 import HomeHeroPod from '#pods/home-hero/home-hero.pod.astro';
 import MonthlyRecommendationPod from '#pods/monthly-recommendation/monthly-recommendation.pod.astro';
+import { getMetadata } from '#core/api';
 
 const allPosts = await getAllPosts();
 const sortedPosts = allPosts.sort((a: any, b: any) => new Date(b.date).getTime() - new Date(a.date).getTime());
 
 const otherPosts = allPosts.slice(0, 5);
+
+const metadata = await getMetadata();
 ---
 
-<Layout title="John's Web Dev Blog" reverseAside={true}>
+<Layout
+  title={metadata.homeTitle}
+  reverseAside={true}
+  description={metadata.homeDescription}
+  favicon={metadata.favicon.url}
+>
   <HomeHeroPod slot="hero" />
   <PostCollection posts={sortedPosts} />
   <Fragment slot="aside">

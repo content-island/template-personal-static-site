@@ -6,10 +6,12 @@ import CTAPod from '#pods/cta/cta.pod.astro';
 import { getTheme } from './api';
 export interface Props {
   title: string;
+  description: string;
+  favicon: string;
   reverseAside?: boolean;
 }
 
-const { title, reverseAside } = Astro.props;
+const { title, description, favicon, reverseAside } = Astro.props;
 
 const theme = await getTheme();
 
@@ -35,9 +37,10 @@ const fontBodyLink = theme.fontBody.url
     <meta charset="UTF-8" />
     <meta name="description" content="John's Web Dev Blog" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href={favicon} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <meta name="description" content={description} />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href={fontTitleLink} rel="stylesheet" />

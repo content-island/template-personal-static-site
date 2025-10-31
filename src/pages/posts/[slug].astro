@@ -6,6 +6,7 @@ import MiniBioPod from '#pods/mini-bio/mini-bio.pod.astro';
 import PopularPostsPod from '#pods/popular-post/popular-post.pod.astro';
 import MonthlyRecommendationPod from '#pods/monthly-recommendation/monthly-recommendation.pod.astro';
 import { getAllPosts } from '#pods/post-collection/api';
+import { getMetadata } from '#core/api';
 
 export async function getStaticPaths() {
   const postEntries = await getAllPosts();
@@ -20,9 +21,11 @@ const { entry } = Astro.props;
 // Get other posts for sidebar
 const allPosts = await getAllPosts();
 const otherPosts = allPosts.slice(0, 5);
+
+const metadata = await getMetadata();
 ---
 
-<Layout title={entry.title}>
+<Layout title={entry.title} description={entry.summary} favicon={metadata.favicon.url}>
   <Hero url={entry.image.url} slot="hero" />
 
   <PostPod postEntry={entry} />
