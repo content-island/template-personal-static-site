@@ -1,0 +1,24 @@
+---
+import { getContactSection } from '#pods/contact/api';
+
+const content = await getContactSection();
+console.log(content);
+---
+
+<nav class="flex w-fit gap-4" aria-label={content.ContactButtonsLabel}>
+  {
+    content.contactButtons &&
+      content.contactButtons.map(button => (
+        <a
+          href={button.url}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="bg-primary-500 hover:bg-primary-600 dark:bg-primary-500 dark:hover:bg-primary-400 flex h-9.5 w-9.5 items-center justify-center rounded-full text-3xl text-white transition-all duration-200 hover:scale-110"
+          title={button.name}
+          aria-label={button.name}
+        >
+          <img src={button.icon.url} alt={button.name} class="w-10 invert" />
+        </a>
+      ))
+  }
+</nav>
