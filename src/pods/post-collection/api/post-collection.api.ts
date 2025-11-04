@@ -1,4 +1,4 @@
-import client from '#lib/client.ts';
+import client from '#lib/client';
 import type { Post } from './post-collection.api-model';
 
 export const getAllPosts = async () =>
