@@ -1,6 +1,9 @@
+import type { LanguageCode } from '@content-island/api-client';
+
 export interface Recommendation {
   id: string;
-  language: string;
+  language: LanguageCode;
+  lastUpdate: string; // Stores the date in ISO 8601 format. For example: 2021-09-10T19:30:00.000Z
   description: string;
   linkText?: string;
   linkLabel: string;
@@ -9,7 +12,8 @@ export interface Recommendation {
 
 export interface RecommendationSection {
   id: string;
-  language: string;
+  language: LanguageCode;
+  lastUpdate: string; // Stores the date in ISO 8601 format. For example: 2021-09-10T19:30:00.000Z
   title: string;
   oneRecommendation: Recommendation;
 }
