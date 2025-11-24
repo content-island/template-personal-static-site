@@ -5,6 +5,6 @@ export const getAllPosts = async () =>
   await client.getContentList<Post>({
     contentType: 'Post',
     sort: {
-      lastUpdate: 'desc',
+      'fields.lastUpdate': 'desc',
     },
   });
