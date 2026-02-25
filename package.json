@@ -19,7 +19,7 @@
     "marked": "^17.0.3"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4.1.17",
+    "@tailwindcss/postcss": "^4.2.1",
     "@tailwindcss/vite": "^4.1.17",
     "@types/marked": "^5.0.2",
     "prettier": "^3.8.1",
