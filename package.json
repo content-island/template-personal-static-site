@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@content-island/api-client": "^0.17.0",
-    "astro": "^5.18.0",
+    "astro": "^5.18.1",
     "highlight.js": "^11.11.1",
     "marked": "^17.0.4"
   },
