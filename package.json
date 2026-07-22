@@ -16,7 +16,7 @@
     "@content-island/api-client": "^0.24.0",
     "astro": "^6.4.8",
     "highlight.js": "^11.11.1",
-    "marked": "^18.0.5"
+    "marked": "^18.0.7"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
