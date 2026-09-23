@@ -26,5 +26,11 @@
     "prettier-plugin-astro": "^1.0.1",
     "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3"
+  },
+  "overrides": {
+    "@bruits/satteri-wasm32-wasi": {
+      "@emnapi/core": "1.11.3",
+      "@emnapi/runtime": "1.11.3"
+    }
   }
 }
