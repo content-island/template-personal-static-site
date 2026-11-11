@@ -20,7 +20,7 @@
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4.3.3",
-    "@tailwindcss/vite": "^4.3.3",
+    "@tailwindcss/vite": "^4.3.5",
     "@types/marked": "^6.0.0",
     "prettier": "^3.9.10",
     "prettier-plugin-astro": "^1.1.2",
